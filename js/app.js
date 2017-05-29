@@ -32,7 +32,7 @@ function Publicacion(tipo) {
         contTitulo.appendChild(document.createTextNode(titulo));
         console.log(contTitulo)
 		this.cajaPublicacion.appendChild(contTitulo);
-		//this.titulo = titulo;
+		this.titulo = titulo;
 	}
 
 	this.publFecha = function() {
@@ -102,6 +102,53 @@ function publicarTexto(tipo) {
 	areaPublicaciones.appendChild(publicacion.cajaPublicacion);
 	limpiarModal('modalTexto');
 	
+}
+
+function publicarImagen(){
+    
+}
+
+function publicarMedia(){
+    
+}
+
+function publicarEvento(){
+	var publicacion = new Publicacion('evento');
+	publicacion.publTitulo();
+	var id = publicacion.titulo.trim().split(' ')[0];
+    console.log(id)
+	publicacion.publContenido('fecha', 'p', 'flow-text');
+
+	var cajaMapa = document.createElement('div');
+	cajaMapa.classList.add('s12', 'map-container');
+	cajaMapa.id = 'mapa-' + id;
+
+	publicacion.cajaPublicacion.appendChild(cajaMapa);
+	areaPublicaciones.appendChild(publicacion.cajaPublicacion);
+	crearMapa(id);
+	limpiarModal('modalEvento');
+	 
+}
+
+
+// *** Mapa para publicaciones tipo evento ***
+function crearMapa(id) {
+	navigator.geolocation.getCurrentPosition(initMap);
+
+	function initMap(position) {
+		var miUbicacion = {
+			lat: position.coords.latitude,
+			lng: position.coords.longitude
+		};
+		var mapa = new google.maps.Map(document.getElementById('mapa-' + id), {
+			zoom: 16,
+			center: miUbicacion
+		});
+		var marcador = new google.maps.Marker({
+			position: miUbicacion,
+			map: mapa
+		});
+	}
 }
 
 
