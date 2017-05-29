@@ -99,7 +99,7 @@ function publicarTexto(tipo) {
 	var publicacion = new Publicacion('texto');
 	publicacion.publTitulo();
 	publicacion.publContenido('contenido', 'p', 'flow-text')
-	areaPublicaciones.appendChild(publicacion.cajaPublicacion);
+	areaPublicaciones.insertBefore(publicacion.cajaPublicacion,areaPublicaciones.firstChild);
 	limpiarModal('modalTexto');
 	
 }
@@ -124,7 +124,7 @@ function publicarEvento(){
 	cajaMapa.id = 'mapa-' + id;
 
 	publicacion.cajaPublicacion.appendChild(cajaMapa);
-	areaPublicaciones.appendChild(publicacion.cajaPublicacion);
+	areaPublicaciones.insertBefore(publicacion.cajaPublicacion,areaPublicaciones.firstChild);
 	crearMapa(id);
 	limpiarModal('modalEvento');
 	 
