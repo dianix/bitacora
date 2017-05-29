@@ -30,7 +30,6 @@ function Publicacion(tipo) {
 		var titulo = document.getElementById(this.tipo + '-titulo').value;
 		var contTitulo = document.createElement('h3');
         contTitulo.appendChild(document.createTextNode(titulo));
-        console.log(contTitulo)
 		this.cajaPublicacion.appendChild(contTitulo);
 		this.titulo = titulo;
 	}
@@ -61,7 +60,6 @@ function Publicacion(tipo) {
 // *** identificar tipo de publicación ***
 function identificar(){
     var tipoPubl = $(event.currentTarget).data('publication');
-    //console.log(tipoPubl)
     publicar(tipoPubl);
 }
 
@@ -94,44 +92,69 @@ function publicar(tipo) {
 }
 
 function publicarTexto(tipo) {
-    console.log(tipo, areaPublicaciones);
-	
 	var publicacion = new Publicacion('texto');
 	publicacion.publTitulo();
 	publicacion.publContenido('contenido', 'p', 'flow-text')
 	areaPublicaciones.insertBefore(publicacion.cajaPublicacion,areaPublicaciones.firstChild);
-	limpiarModal('modalTexto');
-	
+	limpiarModal('modalTexto');	
 }
 
 function publicarImagen(){
-    
+    var publicacion = new Publicacion('imagen');
+    publicacion.publTitulo();
+    var archivo = document.getElementById('imagen')
+    loadFiles(archivo);
+    areaPublicaciones.insertBefore(publicacion.cajaPublicacion,areaPublicaciones.firstChild);    limpiarModal('modalImagen');
 }
 
 function publicarMedia(){
     
 }
 
+function loadFiles(archivo) {
+    console.log(archivo)
+    var lector = new FileReader();
+    switch (archivo.type) {
+        case 'image/png':
+        case 'image/jpeg':
+        case 'image/gif':
+            lector.readAsDataURL(archivo);
+            lector.onload = readImage;
+            break;
+        case 'text/plain':
+            lector.readAsText(archivo, 'UTF-8');
+            lector.onload = readText;
+            break;
+        case 'audio/*':
+            lector.readAsArrayBuffer(archivo);
+            lector.onload = readAudio;
+            break;
+        case 'video/mpeg':
+        case 'video/mp4':
+        case 'video/quicktime':
+            lector.readAsArrayBuffer(archivo);
+            lector.onload = readVideo;
+            break;
+        default:
+            break;
+    }
+}
+
+// *** publicaciones tipo evento ***
 function publicarEvento(){
 	var publicacion = new Publicacion('evento');
 	publicacion.publTitulo();
 	var id = publicacion.titulo.trim().split(' ')[0];
-    console.log(id)
 	publicacion.publContenido('fecha', 'p', 'flow-text');
-
 	var cajaMapa = document.createElement('div');
 	cajaMapa.classList.add('s12', 'map-container');
 	cajaMapa.id = 'mapa-' + id;
-
 	publicacion.cajaPublicacion.appendChild(cajaMapa);
 	areaPublicaciones.insertBefore(publicacion.cajaPublicacion,areaPublicaciones.firstChild);
 	crearMapa(id);
 	limpiarModal('modalEvento');
-	 
 }
 
-
-// *** Mapa para publicaciones tipo evento ***
 function crearMapa(id) {
 	navigator.geolocation.getCurrentPosition(initMap);
 
@@ -150,6 +173,7 @@ function crearMapa(id) {
 		});
 	}
 }
+// *** publicaciones tipo evento - fin ***
 
 
 function limpiarModal(id) {
