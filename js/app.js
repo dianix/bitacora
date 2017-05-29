@@ -3,6 +3,14 @@ $(document).ready(function () {
     $('.modal').modal();
 });
 
+$('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year
+    onStart: () => {
+        $('.picker').appendTo('body');
+    }
+});
+
 /*
 var tituloTexto = document.getElementById("titulo-texto");
 var contenidoTexto = document.getElementById("texto-contenido");
