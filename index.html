@@ -28,7 +28,7 @@
             <ul>
                 <li><a class="btn amber darken-1 btn-floating" href="#modalTexto"><i class="material-icons">chat</i></a></li>
                 <li><a class="btn amber darken-2 btn-floating" href="#modalImagen"><i class="material-icons">perm_media</i></a></li>
-                <li><a class="btn amber darken-3 btn-floating" href="#modalVideo"><i class="material-icons">video_library</i></a></li>
+                <li><a class="btn amber darken-3 btn-floating" href="#modalMedia"><i class="material-icons">video_library</i></a></li>
                 <li><a class="btn amber darken-4 btn-floating" href="#modalEvento"><i class="material-icons">today</i></a></li>
             </ul>
         </div>
@@ -40,15 +40,15 @@
             <div class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="titulo-texto" type="text" class="validate" data-length="10" />
-                        <label for="titulo-texto">Título</label>
+                        <input id="texto-titulo" type="text" class="validate" data-length="10" />
+                        <label for="texto-titulo">Título</label>
                     </div>
                     <div class="input-field col s12">
                         <textarea id="texto-contenido" class="materialize-textarea"></textarea>
                         <label for="texto-contenido">Mensaje</label>
                     </div>
-                    <button class="btn waves-effect waves-light right amber darken-4" type="submit" name="action" data-publication="text">
-                        Publicar<i class="material-icons right">send</i>
+                    <button class="btn waves-effect waves-light right amber darken-1" type="submit" name="action" data-publication="texto">
+                        Publicar <i class="material-icons right">send</i>
                     </button>
                 </div>
             </div>
@@ -56,12 +56,76 @@
     </div>
 
     <!-- MODAL IMAGEN -->
-
+    <div id="modalImagen" class="modal">
+        <div class="modal-content row">
+            <div class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="imagen-titulo" type="text" class="validate" data-length="10" />
+                        <label for="imagen-titulo">Título</label>
+                    </div>
+                    <div class="file-field input-field col s12">
+                        <div class="btn">
+                            <span>Imagen</span>
+                            <input type="file" accept="image/*" id="imagen">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text" placeholder="Seleccionar archivo">
+                        </div>
+                    </div>
+                    <button class="btn waves-effect waves-light right amber darken-2" type="submit" name="action" data-publication="imagen">
+                        Publicar <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- MODAL VIDEO -->
+    <div id="modalMedia" class="modal">
+        <div class="modal-content row">
+            <div class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="media-titulo" type="text" class="validate" data-length="10" name="media-titulo" />
+                        <label for="media-titulo">Título</label>
+                    </div>
+                    <div class="file-field input-field col s12">
+                        <div class="btn">
+                            <span>Audio o Video</span>
+                            <input type="file" accept="video/mp4,video/x-m4v,video/*, audio/mp3, audio/*" id="media-file">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text" placeholder="Seleccionar archivo">
+                        </div>
+                    </div>
+                    <button class="btn waves-effect waves-light right amber darken-3" type="submit" name="action" data-publication="media">
+                        Publicar <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- MODAL EVENTO -->
-
+    <div id="modalEvento" class="modal">
+        <div class="modal-content row">
+            <div class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="evento-titulo" type="text" class="validate" data-length="10" />
+                        <label for="evento-titulo">Título</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input id="evento-fecha" type="date" class="datepicker" placeholder="Fecha del evento">
+                    </div>
+                    <button class="btn waves-effect waves-light right amber darken-4" type="submit" name="action" data-publication="evento">
+                        Publicar <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- ENLACES SCRIPT -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
